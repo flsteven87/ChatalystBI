@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.so
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# IDE
+.idea/
+.vscode/
+
+# Frontend
+node_modules/
+npm-debug.log*
+.next/
+
+# Testing
+.coverage
+.pytest_cache/
+
+# Logs
+*.log
+
+# Misc
+.DS_Store
+Thumbs.db
