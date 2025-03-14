@@ -32,11 +32,10 @@ async def get_image_info(image_id: str, request: Request):
     if not os.path.exists(image_path):
         raise HTTPException(status_code=404, detail="Image not found")
     
-    # 使用配置的基礎 URL，不依賴請求
-    # 添加時間戳以防止緩存問題
+    # 優先返回直接訪問 URL，這是最可靠的方式
     return ImageInfo(
         id=image_id,
-        url=f"{BASE_URL}/static/images/{image_id}.png?t={int(time.time())}"
+        url=f"{BASE_URL}/api/v1/images/direct/{image_id}?t={int(time.time())}"
     )
 
 @router.get("/", response_model=List[ImageInfo])
@@ -172,7 +171,7 @@ async def get_direct_image(image_id: str):
     image_path = os.path.join(IMAGES_DIR, f"{image_id}.png")
     
     if not os.path.exists(image_path):
-        raise HTTPException(status_code=404, detail="Image not found")
+        raise HTTPException(status_code=404, detail=f"Image not found: {image_id}")
     
     return FileResponse(
         image_path, 
@@ -183,6 +182,7 @@ async def get_direct_image(image_id: str):
             "Access-Control-Allow-Headers": "*",
             "Cache-Control": "no-cache, no-store, must-revalidate",
             "Pragma": "no-cache",
-            "Expires": "0"
+            "Expires": "0",
+            "Content-Disposition": f"inline; filename={image_id}.png"
         }
     ) 
