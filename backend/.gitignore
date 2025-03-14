@@ -28,3 +28,5 @@ npm-debug.log*
 # Misc
 .DS_Store
 Thumbs.db
+# Generated content
+app/static/images/
