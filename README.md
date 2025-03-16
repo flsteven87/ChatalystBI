@@ -6,65 +6,99 @@ A smart business intelligence platform that offers AI-powered analytics through 
 
 ChatalystBI transforms how you interact with business data by combining the power of Large Language Models with data visualization capabilities. Users can simply chat with the system to analyze data, generate insights, and create visualizations without technical expertise.
 
+## Features
+
+- **Natural Language Interface**: Ask questions about your data in plain language
+- **AI-Powered Analytics**: Leverage LLMs to analyze and interpret data
+- **Automated Visualizations**: Generate charts and graphs based on conversation context
+- **Simplified User Experience**: No SQL or programming knowledge required
+
+## Technology Stack
+
+- **Backend**: FastAPI for high-performance API endpoints
+- **AI Integration**: OpenAI and CrewAI for intelligent processing
+- **Frontend**: Streamlit for a simple, interactive user interface
+- **Data Visualization**: Matplotlib and custom visualization tools
+
 ## Architecture
 
-### Frontend
-- Built with Next.js, React 19, and Tailwind CSS
-- Responsive chat interface with support for text and visualization rendering
-- Modern UI with optimized performance
+The application follows a clean architecture with these components:
 
-### Backend
-- FastAPI framework for high-performance API endpoints
-- LLM integration using OpenAI and CrewAI
-- Data processing and visualization generation capabilities
-- RESTful API design
+```
+ChatalystBI/
+├── app/                  # Backend application code
+│   ├── api/              # API endpoints
+│   ├── core/             # Core configuration and setup
+│   ├── db/               # Database connections and models
+│   ├── models/           # Data models
+│   ├── schemas/          # Pydantic schemas for validation
+│   ├── services/         # Business logic services
+│   ├── static/           # Static files (images, etc.)
+│   ├── tools/            # Helper tools and utilities
+│   └── utils/            # Utility functions
+├── streamlit_app.py      # Streamlit frontend application
+├── requirements.txt      # Python dependencies
+└── .env.example          # Example environment variables
+```
 
 ## Getting Started
 
 ### Prerequisites
-- Node.js (v18+)
-- Python (v3.10+)
-- Poetry (for Python dependency management)
+- Python 3.10 or higher
+- OpenAI API key
 
 ### Installation
 
-#### Backend Setup
 ```bash
-cd backend
-poetry install
-cp .env.example .env  # Update with your API keys
-poetry run python -m app.main
-```
+# Clone the repository
+git clone https://github.com/yourusername/ChatalystBI.git
+cd ChatalystBI
 
-#### Frontend Setup
-```bash
-cd frontend
-npm install
-cp .env.example .env.local  # Configure environment variables
-npm run dev
+# Create and activate virtual environment
+python -m venv venv
+# On Windows
+# venv\Scripts\activate
+# On macOS/Linux
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env file with your API keys
 ```
 
 ## Usage
 
-1. Navigate to `http://localhost:3000` in your browser
-2. Start a new conversation with ChatalystBI
-3. Ask questions about your business data
-4. View generated visualizations and insights directly in the chat
-
-## Development
-
-### Backend Development
+### Start the FastAPI server:
 ```bash
-cd backend
-poetry run uvicorn app.main:app --reload
+# Activate virtual environment
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Start the API server
+uvicorn app.main:app --reload
 ```
 
-### Frontend Development
+### Start the Streamlit interface:
 ```bash
-cd frontend
-npm run dev
+# Activate virtual environment
+source venv/bin/activate  # Windows: venv\Scripts\activate
+
+# Start the Streamlit interface
+streamlit run streamlit_app.py
 ```
+
+## API Documentation
+
+Once the server is running, you can access the API documentation at:
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
-MIT 
+This project is licensed under the MIT License - see the LICENSE file for details. 
